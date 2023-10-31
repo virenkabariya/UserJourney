@@ -1,0 +1,58 @@
+﻿@using UserJourney.Core.Constants
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link href="~/css/user-bundle.min.css" rel="stylesheet" />
+    <script src="~/js/site.js"></script>
+    <script src="~/js/user-bundle.min.js"></script>
+    <script src="~/js/jquery.validate.js"></script>
+    <script src="~/js/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+    @RenderBody()
+
+    <footer class="login-footer">
+        @Html.Raw(string.Format(Resources.CopyrightText, DateTime.Now.Year))
+    </footer>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var error = '@(TempData["ErrorMessage"])';
+        if (error !== null && error !== "") {
+            errorMessage(error);
+        }
+        var success = '@(TempData["SuccessMessage"])';
+        if (success !== null && success !== "") {
+            successMessage(success);
+        }
+
+        setFocusFirstControl('form');
+    });
+
+    function OnLogin() {
+        window.location.href = "@Url.Action(Actions.Login, Controllers.UserController)";
+    }
+
+    function OnRegistration() {
+        window.location.href = "@Url.Action(Actions.Registration, Controllers.UserController)";
+    }
+
+    function OnDashboard() {
+        window.location.href = "@Url.Action(Actions.Dashboard, Controllers.HomeController)";
+    }
+
+    function OnResetPassword() {
+        window.location.href = "@Url.Action(Actions.ResetPassword, Controllers.UserController)";
+    }
+
+    function OnLogout() {
+        window.location.href = "@Url.Action(Actions.Logout, Controllers.UserController)";
+    }
+</script>

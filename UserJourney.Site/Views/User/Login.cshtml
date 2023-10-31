@@ -1,0 +1,45 @@
+﻿@model UserJourney.Repositories.EF.ViewModel.LoginViewModel
+@using UserJourney.Core.Constants
+@{
+    ViewBag.Title = Resources.Login;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="wrapper login-page">
+    <div class="login-inner">
+        <div class="login-block">
+            <div class="login-header" style="text-align: center; font-size: 30px;">
+                @Resources.User @Resources.Login
+            </div>
+            @using (Html.BeginForm(Actions.Login, Controllers.UserController, FormMethod.Post, new { id = "frmLogin", @class = "login-form default-form" }))
+            {
+                <div id="divMessage"></div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Email):
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", autocomplete = "off" })
+                    @Html.ValidationMessageFor(x => x.Email, "", new { @class = "form-validation" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Password):
+                    @Html.TextBoxFor(x => x.Password, new { @class = "form-control", type = "password", autocomplete = "off" })
+                    @Html.ValidationMessageFor(x => x.Password, "", new { @class = "form-validation" })
+                </div>
+                <div class="form-group">
+                    <label class="icheck-label">
+                        @Html.CheckBoxFor(m => m.RememberMe, new { @class = "icheck", @checked = "checked" })
+                        <span for="RememberMe">Remember Me</span>
+                    </label>
+                    <label style="float:right">
+                        <a href="@Url.Action(Actions.ForgotPassword, Controllers.UserController)" class="forgot-password">@Html.Raw(Resources.IsForgotPassword)</a>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">@Html.Raw(Resources.Save)</button>
+
+                <div style="float:right">
+                    <button type="button" class="btn btn-outline-primary" onclick="OnRegistration()">@Html.Raw(Resources.Registration)</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

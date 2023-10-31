@@ -1,0 +1,56 @@
+﻿@model UserJourney.Repositories.EF.ViewModel.UserViewModel
+@using UserJourney.Core.Constants
+@{ 
+    ViewBag.Title = Resources.Registration;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="wrapper login-page">
+    <div class="login-inner">
+        <div class="login-block">
+            <div class="login-header" style="text-align: center; font-size: 30px;">
+                @Resources.User @Resources.Registration
+            </div>
+            @using (Html.BeginForm(Actions.Registration, Controllers.UserController, FormMethod.Post, new { id = "frmRegistration", @class = "login-form default-form" }))
+            {
+                <div id="divMessage"></div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.FirstName):
+                    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", autocomplete = "off", maxLength = "50" })
+                    @Html.ValidationMessageFor(x => x.FirstName, "", new { @class = "form-validation" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.LastName):
+                    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", autocomplete = "off", maxLength = "50" })
+                    @Html.ValidationMessageFor(x => x.LastName, "", new { @class = "form-validation" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Email):
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", autocomplete = "off", maxLength = "100", })
+                    @Html.ValidationMessageFor(x => x.Email, "", new { @class = "form-validation" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Password):
+                    @Html.TextBoxFor(x => x.Password, new { @class = "form-control", type = "password", autocomplete = "off", maxLength = "20" })
+                    @Html.ValidationMessageFor(x => x.Password, "", new { @class = "form-validation" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.ConfirmPassword):
+                    @Html.TextBoxFor(x => x.ConfirmPassword, new { @class = "form-control", type = "password", autocomplete = "off", maxLength = "20" })
+                    @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @class = "form-validation" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(x => x.PhoneNumber):
+                    @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", maxLength = "50", autocomplete = "off" })
+                    @Html.ValidationMessageFor(x => x.PhoneNumber, "", new { @class = "form-validation" })
+                </div>
+
+                <button type="submit" class="btn btn-primary">@Html.Raw(Resources.Save)</button>
+                <div style="float:right">
+                    <button type="button" class="btn btn-outline-primary" onclick="OnLogin()">@Html.Raw(Resources.Cancel)</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

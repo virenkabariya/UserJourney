@@ -1,0 +1,29 @@
+﻿@model UserJourney.Repositories.EF.ViewModel.UserViewModel
+@using UserJourney.Core.Constants
+@{
+    ViewBag.Title = Resources.Dashboard;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="wrapper login-page">
+    <div class="login-inner">
+        <div class="login-block">
+            <div class="login-header" style="text-align: center; font-size: 30px;">
+                @Resources.Dashboard
+            </div>
+            <form class="login-form default-form">
+                <div id="divMessage"></div>
+                <div class="form-group">
+                    Welcome, @ViewBag.FullName
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-outline-primary" onclick="OnResetPassword()">@Html.Raw(Resources.ResetPassword)</button>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-outline-primary" onclick="OnLogout()">@Html.Raw(Resources.Logout)</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
