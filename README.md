@@ -1,9 +1,6 @@
 # UserJourney
 
-CREATE DATABASE UserJourney
-USE [UserJourney]
-CREATE USER [BUILTIN\Users] FOR LOGIN [BUILTIN\Users] WITH DEFAULT_SCHEMA=[dbo]
-ALTER ROLE [db_owner] ADD MEMBER [BUILTIN\Users]
+=> For run this project you need to run below script on your database.
 
 CREATE TABLE [dbo].[Users] (
     [UserId]       INT IDENTITY (1, 1) NOT NULL,
@@ -18,3 +15,9 @@ CREATE TABLE [dbo].[Users] (
 	[ModifiedDate] DATETIME NULL,
 	CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED ([UserId] ASC)
 );
+
+=> Also You need to change ConnectionStrings & EMailSettings on appsettings.json
+
+=> UserJourney.Site is developed using .NET Core 2.1. It is basically a view and a controller.
+=> UserJourney.Repositories is a class library; in this, we have to connect to the database using the entity framework.
+=> UserJourney.Core is a class library; in this, we have added common services, enums, templates, etc.
